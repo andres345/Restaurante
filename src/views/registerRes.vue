@@ -1,139 +1,99 @@
 <template>
-    <div class="register">
-      <h1 class="title">Registro</h1>
-      <form action class="form" @submit.prevent="register">
-        <label class="form-label" for="#email">Email:</label>
-        <input
-          v-model="email"
-          class="form-input"
-          type="email"
-          id="email"
-          required
-          placeholder="Email"
-        >
-        <label class="form-label" for="#password">Password:</label>
-        <input
-          v-model="password"
-          class="form-input"
-          type="password"
-          id="password"
-          placeholder="Password"
-        >
-        <!--<Password v-model="password">
-            <template #header>
-                <h6>Elige una contraseña</h6>
-            </template>
-            <template #footer>
-                
-                <Divider />
-                <p class="mt-2">Sugerencias</p>
-                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                    <li>Al menos una minúscula</li>
-                    <li>Al menos una mayúscula</li>
-                    <li>Al menos un número</li>
-                    <li>Mínimo 8 caracteres</li>
-                </ul>
-            </template>
-        </Password>-->
-        <label class="form-label" for="#password-repeat">Repite la contraeña:</label>
-        <input
-          v-model="passwordRepeat"
-          class="form-input"
-          type="password"
-          id="password-repeat"
-          placeholder="Password"
-        >
-        <input class="form-submit" type="submit" value="Sign Up">
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  //import Password from 'primevue/password';
-  //import Divider from 'primevue/divider';
-  import auth from "@/logic/auth";
-  export default {
-    data: () => ({
-      email: "",
-      password: "",
-      passwordRepeat: ""
-    }),
-    methods: {
-      async register() {
-        try {
-          await auth.register(this.email, this.password);
-          this.$router.push("/");
-        }catch (error){
-          console.log(error);
-        }
+  <div class="jumbotron">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-8 offset-sm-2">
+                  <div>
+                      <center>
+                        <h2>Registro</h2>
+                      </center>
+                      <br>
+                      <form>
+                          <div class="form-group">
+                              <label for="firstName">Nombres</label>
+                              <input type="text" v-model="user.firstName" id="firstName" name="firstName" class="form-control" :class="{ 'is-invalid': submitted && $v.user.firstName.$error }" />
+                              <div v-if="submitted && !$v.user.firstName.required" class="invalid-feedback">Los nombres son requeridos</div>
+                          </div>
+                          <div class="form-group">
+                              <label for="lastName">Apellidos</label>
+                              <input type="text" v-model="user.lastName" id="lastName" name="lastName" class="form-control" :class="{ 'is-invalid': submitted && $v.user.lastName.$error }" />
+                              <div v-if="submitted && !$v.user.lastName.required" class="invalid-feedback">Los apellidos son requeridos</div>
+                          </div>
+                          <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" v-model="user.email" id="email" name="email" class="form-control" :class="{ 'is-invalid': submitted && $v.user.email.$error }" />
+                              <div v-if="submitted && $v.user.email.$error" class="invalid-feedback">
+                                  <span v-if="!$v.user.email.required">El Email es requerido</span>
+                                  <span v-if="!$v.user.email.email">El Email es inválido</span>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="password">Contraseña</label>
+                              <input type="password" v-model="user.password" id="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && $v.user.password.$error }" />
+                              <div v-if="submitted && $v.user.password.$error" class="invalid-feedback">
+                                  <span v-if="!$v.user.password.required">La contraseña es requerida</span>
+                                  <span v-if="!$v.user.password.minLength">La contraseña debe tener 8 caracteres</span>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="confirmPassword">Confirmar contraseña</label>
+                              <input type="password" v-model="user.confirmPassword" id="confirmPassword" name="confirmPassword" class="form-control" :class="{ 'is-invalid': submitted && $v.user.confirmPassword.$error }" />
+                              <div v-if="submitted && $v.user.confirmPassword.$error" class="invalid-feedback">
+                                  <span v-if="!$v.user.confirmPassword.required">Confirmación de contraseña requerida</span>
+                                  <span v-else-if="!$v.user.confirmPassword.sameAsPassword">Contraseñas no son iguales</span>
+                              </div>
+                          </div><br>
+                          <div class="form-group">
+                              <button @click.prevent="handleSubmit" class="btn btn-primary">Registrar</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</template>
+
+<script>
+
+    import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+
+    export default {
+      name: "registerRes",
+      data() {
+          return {
+              user: {
+                  firstName: "",
+                  lastName: "",
+                  email: "",
+                  password: "",
+                  confirmPassword: "",
+                  submitted: false
+              },
+          };
+      },
+      validations: {
+          user: {
+              firstName: { required },
+              lastName: { required },
+              email: { required, email },
+              password: { required, minLength: minLength(8) },
+              confirmPassword: { required, sameAsPassword: sameAs('password') }
+          }
+      },
+      methods: {
+        handleSubmit() {
+            this.submitted = true;
+
+            // stop here if form is invalid
+            this.$v.$touch();
+                if (this.$v.$invalid) {
+                return;
+            }
+            
+          alert("Cuenta agregada exitosamente");
+
+        },
       }
-    }, 
-    components: {
-      //Password,
-      //Divider
-    }
   };
-  </script>
-  
-  <style lang="scss" scoped>
-
-  ::v-deep(.p-password input) {
-    width: 15rem
-  }
-
-  .register {
-    padding: 2rem;
-  }
-  .title {
-    text-align: center;
-  }
-  .form {
-    margin: 3rem auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 20%;
-    min-width: 350px;
-    max-width: 100%;
-    background: rgba(19, 35, 47, 0.9);
-    border-radius: 5px;
-    padding: 40px;
-    box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.3);
-  }
-  .form-label {
-    margin-top: 2rem;
-    color: white;
-    margin-bottom: 0.5rem;
-    &:first-of-type {
-      margin-top: 0rem;
-    }
-  }
-  .form-input {
-    padding: 10px 15px;
-    background: none;
-    background-image: none;
-    border: 1px solid white;
-    color: white;
-    &:focus {
-      outline: 0;
-      border-color: #1ab188;
-    }
-  }
-  .form-submit {
-    background: #1ab188;
-    border: none;
-    color: white;
-    margin-top: 3rem;
-    padding: 1rem 0;
-    cursor: pointer;
-    transition: background 0.2s;
-    &:hover {
-      background: #0b9185;
-    }
-  }
-  .error {
-    margin: 1rem 0 0;
-    color: #ff4a96;
-  }
-  </style>
-  
+</script>

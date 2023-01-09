@@ -1,27 +1,17 @@
 <template>
   <div id="app">
-    <router-view/>
+    <Dashboard/>
   </div>
 </template>
 
 <script>
-//import { auth } from "./utils/firebase";
-//import { onMounted } from 'vue';
+
+import Dashboard from '@/views/Dashboard/DashboardAdmin.vue';
 
 export default {
-    name: "App",
-    /*setup() {
-    onMounted(() => {
-      auth.onAuthStateChanged((user) => {
-        if(user){
-          console.log("Usuario logueado");
-        }else{
-          console.log("usuario no logueado");
-        }
-      })
-    });
-  },*/
+  name: "App",
   components: {
+    Dashboard,
   }
 };
 </script>

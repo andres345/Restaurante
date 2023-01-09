@@ -1,6 +1,6 @@
 <template>
     <div ref="target" id="target" class="center">
-      <vs-button flat @click="openLoading">Open Loading <b>Progress</b></vs-button>
+      <vs-button flat @click="openLoading"></vs-button>
     </div>
   </template>
   <script>

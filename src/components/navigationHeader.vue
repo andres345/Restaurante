@@ -1,14 +1,12 @@
 <template>
     <div class="template">
     <router-link to="/">
-      <img class="logo" src="@/assets/images/LogoBurger.svg" type="svg" />
+      <img v-bind:src="require('@/assets/images/LogoBurger.svg')" class="logo"/>
     </router-link>
     <ul>
       <div class="items">
           <router-link to="/login">
-            <div class="form-group">
               <Button label="Iniciar sesión" id="btnISesion" class="p-button-warning"></Button>
-            </div>
           </router-link>
       </div>
     </ul>
@@ -21,15 +19,15 @@
   export default {
     name: "navigationHeader",
     components: {
-      Button
+      Button,
     }
   };
   </script>
   
   <style scoped>
   .template {
-    position: sticky;
-    z-index: 20;
+    position: relative;
+    z-index: 13;
   }
 
   #btnISesion {
@@ -62,5 +60,6 @@
     position: absolute;
     right: 40px;
     top: 40px;
+    text-decoration: none;
   }
   </style>

@@ -6,9 +6,9 @@ const router = createRouter({
   routes: [
     { path: '/', component: HomeView },
     { path: '/login', component: import('../views/loginRes.vue') },
-    { path: '/register', component: import('../views/registerRes.vue') },
+    { path: '/register', name: "register", component: import('../views/registerRes.vue') },
     { path: '/newBooking', component: import('../components/FormularioCliente.vue') }
   ]
-})
+});
 
 export default router

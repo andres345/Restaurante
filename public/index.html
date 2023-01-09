@@ -11,7 +11,7 @@
     <link href="https://unpkg.com/primevue@^3/resources/primevue.min.css" rel="stylesheet" />
     <link href="https://unpkg.com/primeflex@^3/primeflex.min.css" rel="stylesheet" />
     <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Heebo&family=Inter&family=Lato&family=Nunito&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow&family=Heebo&family=Inter&family=Lato&family=Mr+Dafoe&family=Nunito&family=Poppins&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/primevue@^3/core/core.min.js"></script>
@@ -27,6 +27,7 @@
     <script src="https://unpkg.com/primevue@^3/textarea/textarea.min.js"></script>
     <script src="https://unpkg.com/primevue@^3/divider/divider.min.js"></script>
     <script src="https://unpkg.com/primevue@^3/card/card.min.js"></script>
+    <script src="https://unpkg.com/primevue@^3/image/image.min.js"></script>
 
     <title>Restaurante</title>
   </head>
@@ -35,6 +36,41 @@
       <strong>App — Restaurante</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+ 
+    <!-- choose one -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <!--FIREBASE-->
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+
+    </script>
+
+    <script>
+      $(document).ready(function(){
+        // Activate tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+        
+        // Select/Deselect checkboxes
+        var checkbox = $('table tbody input[type="checkbox"]');
+        $("#selectAll").click(function(){
+          if(this.checked){
+            checkbox.each(function(){
+              this.checked = true;                        
+            });
+          } else{
+            checkbox.each(function(){
+              this.checked = false;                        
+            });
+          } 
+        });
+        checkbox.click(function(){
+          if(!this.checked){
+            $("#selectAll").prop("checked", false);
+          }
+        });
+      });
+    </script>
   </body>
 </html>

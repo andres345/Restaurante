@@ -1,7 +1,7 @@
 <template id="ComponentC">
     <main class="form-signin">
     <h1 id="titulo">Hacer un reserva</h1><br>
-    <form @submit.prevent="enviarFormulario()" method="post">
+    <form @submit.prevent="enviarFormulario">
         <div class="row">
             <div class="form-group col">
                 <InputText 
@@ -159,7 +159,7 @@
     import Button from 'primevue/button';
 
     export default {
-        el: '#app',
+        el: "#ForularioCliente",
         name: 'FormularioCliente',
         components: {
             Dropdown,
@@ -207,50 +207,6 @@
                     {name: 'Ocasion especial', code: 'OcasionEspecial'}
                 ]
             }
-        },
-
-        methods:{
-            enviarFormulario() {
-                this.procesando = true;
-                this.resetEstado();
-    
-                // Comprobamos la presencia de errores
-                if (this.nombresInvalido || this.apellidosInvalido || this.emailInvalido) {
-                    this.error = true;
-                    console.log("Esta sirviendo");
-                    return;
-                }
-    
-                this.$emit('add-persona', this.persona);
-
-                this.error = false;
-                this.correcto = true;
-                this.procesando = false;
-
-                // Restablecemos el valor de la variables
-                this.persona= {
-                    nombre: '',
-                    apellido: '',
-                    email: '',
-                }
-            },
-                
-            resetEstado() {
-                this.correcto = false;
-                this.error = false;
-            }
-        },
-
-        computed: {
-            nombreInvalido() {
-                return this.reserva.nombres.length < 1;
-            },
-            apellidoInvalido() {
-                return this.reserva.apellidos.length < 1;
-            },
-            emailInvalido() {
-                return this.reservas.email.length < 1;
-            },
         }
     }
 </script>
