@@ -1,21 +1,15 @@
 <template>
   <SidebarDash/>
-  <CRUD/>
+  <router-view/>
 </template>
 
-<style>
-
-</style>
 <script>
-  import SidebarDash from "./SidebarDash";
-  import CRUD from '@/components/AdminCRUD';
-
+  import SidebarDash from "./SidebarDash.vue";
 
   export default {
     name: 'DashboardAdmin',
     components: {
       SidebarDash,
-      CRUD
     },
     data() {
       return {

@@ -57,14 +57,16 @@
               :key="index"
             >
               <li>
-                <a :href="menuItem.link">
+                <router-view>
+                <router-link :to="menuItem.link">
                   <i
                     class="bx"
                     :class="menuItem.icon || 'bx-square-rounded'"
                   />
                   <span class="links_name">{{ menuItem.name }}</span>
-                </a>
+                </router-link>
                 <span class="tooltip">{{ menuItem.tooltip || menuItem.name }}</span>
+                </router-view>
               </li>
             </span>
           </ul>
@@ -102,9 +104,11 @@
         </div>
       </div>
     </div>
+    
   </template>
   
   <script>
+
     export default {
       name: 'SidebarMenuAkahon',
       props: {
@@ -137,37 +141,41 @@
           type: String,
           default: '78px'
         },
-  
+
+      
         //! Menu items
         menuItems: {
           type: Array,
           default: () => [
             {
-              link: '#',
+              link: '/Dashboard',
               name: 'Dashboard',
               tooltip: 'Dashboard',
               icon: 'bx-grid-alt',
             },
             {
-              link: '#',
+              link: '/Cuenta',
               name: 'Cuenta',
               tooltip: 'User',
               icon: 'bx-user',
             },
             {
-              link: '#',
+              link: '/ListaReservas',
               name: 'Reservas',
               tooltip: 'Messages',
               icon: 'bx bx-list-ul',
             },
             {
-              link: '#',
+              link: '/Clientes',
               name: 'Clientes',
               tooltip: 'Analytics',
               icon: 'bx-group',
             }
           ],
         },
+
+
+
   
         //! Search
         isSearch: {
@@ -252,6 +260,9 @@
           isOpened: false
         }
       },
+
+      
+
       mounted() {
         this.isOpened = this.isMenuOpen
       },
@@ -279,6 +290,8 @@
       }
     }
   </script>
+
+
   
   <style>
     /* Google Font Link */

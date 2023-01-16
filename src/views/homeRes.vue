@@ -134,12 +134,9 @@
       text-decoration: none;
       width: 364px;
       line-height: 58px;
-    
       font-weight: 900;
       font-size: 68px;
       opacity: 1;
-      transform: translate(-50%, -50%);
-      
     }
 
     #titulo1{

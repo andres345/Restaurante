@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import PrimeVue from 'primevue/config';
 import DialogD from 'primevue/dialog';
+import naive from "naive-ui";
 
 import App from "./App";
 import Vuelidate from 'vuelidate';
@@ -15,5 +16,5 @@ app.config.productionTip = false;
 app.component("DialogD", DialogD);
 app.component('marquee-text', MarqueeText);
 app.component('vue-sidebar-menu-akahon', VueSidebarMenuAkahon);
-app.use(router, PrimeVue, Vuelidate);
+app.use(router, PrimeVue, Vuelidate, naive);
 app.mount('#app')

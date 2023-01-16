@@ -11,10 +11,11 @@
     <link href="https://unpkg.com/primevue@^3/resources/primevue.min.css" rel="stylesheet" />
     <link href="https://unpkg.com/primeflex@^3/primeflex.min.css" rel="stylesheet" />
     <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow&family=Heebo&family=Inter&family=Lato&family=Mr+Dafoe&family=Nunito&family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Heebo&family=Inter&family=Lato&family=Mr+Dafoe&family=Nunito:wght@400;700&family=Poppins&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://unpkg.com/primevue@^3/core/core.min.js"></script>
+    <script src="https://unpkg.com/primevue@^3/styleclass/styleclass.min.js"></script>
 
     <script src="https://unpkg.com/primevue@^3/calendar/calendar.min.js"></script>
     <script src="https://unpkg.com/primevue@^3/skeleton/skeleton.min.js"></script>
@@ -28,10 +29,14 @@
     <script src="https://unpkg.com/primevue@^3/divider/divider.min.js"></script>
     <script src="https://unpkg.com/primevue@^3/card/card.min.js"></script>
     <script src="https://unpkg.com/primevue@^3/image/image.min.js"></script>
-
+    <script src="https://unpkg.com/primevue@^3/checkbox/checkbox.min.js"></script>
+   
     <title>Restaurante</title>
   </head>
-  <body> 
+  <body>
+    <script>
+      import '@/database/index.php';
+    </script>
     <noscript>
       <strong>App — Restaurante</strong>
     </noscript>
@@ -41,9 +46,10 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
-    <!--FIREBASE-->
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+    <!--AXIOS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     </script>
 
